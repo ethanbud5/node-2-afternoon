@@ -16,7 +16,12 @@ const create = (req,res)=>{
 function update(req,res){
     req.app
         .get("db")
-        .update_product([req.query.desc,req.params.id])
+        .update_product([req.body.product_id,
+            req.body.name,
+            req.body.description,
+            req.body.price,
+            req.body.image_url
+        ])
         .then(response=>{
             res.sendStatus(200)
         })

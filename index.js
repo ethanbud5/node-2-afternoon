@@ -2,11 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const massive = require("massive");
+const cors = require("cors");
 const port = 3005;
 const {getAll,getOne,update,create,deleteProduct} = require("./products_controller")
 
 var app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 massive(process.env.CONNECTION_STRING).then(dbInstance=>{
     //console.log(dbInstance)
@@ -15,7 +17,7 @@ massive(process.env.CONNECTION_STRING).then(dbInstance=>{
 
 app.get("/api/products",getAll);
 app.get("/api/products/:id",getOne);
-app.put("/api/products/:id",update);
+app.put("/api/products",update);
 app.post("/api/products",create);
 app.delete("/api/products/:id",deleteProduct);
 

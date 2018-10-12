@@ -1,2 +1,3 @@
 SELECT * 
-    FROM product;
+    FROM product
+    ORDER BY name;
